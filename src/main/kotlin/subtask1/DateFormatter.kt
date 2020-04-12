@@ -14,14 +14,10 @@ class DateFormatter {
         var nYear = year.toInt();
         return try {
             var nDate = LocalDate.of(nYear, nMonth, nDay);
-            var formatter = DateTimeFormatter.ofPattern("dd MMMM")
+            var formatter = DateTimeFormatter.ofPattern("dd MMMM, EEEE", Locale("ru", "RU"))
             var formattedDate = nDate.format(formatter)
-
-            var dayOfWeek = nDate.dayOfWeek.getDisplayName(
-                TextStyle.FULL,
-                Locale.getDefault(Locale.Category.FORMAT)
-            )
-            return "$formattedDate, $dayOfWeek"
+            
+            return "$formattedDate"
         } catch (exception: DateTimeException) {
             "Такого дня не существует"
         }
